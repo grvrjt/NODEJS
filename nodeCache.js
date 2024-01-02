@@ -1,14 +1,15 @@
+const morgan = require("morgan");
 const express = require('express')
 const nodeCache = require('node-cache');
 const cache = new nodeCache();
 const app = express();
-
+app.use(morgan("dev"));
 cache.set("name", "Gaurav");
 const name = cache.get("name")
 
 console.log("Name Of the user :", name);
 app.listen(8000,()=>{
-    console.log("Server is running on the port : 8000")
+    console.log("Server is running on the port : 8000");
 })
 app.get("/getUsers", (req, res) => {
     console.log("Get users route called");
